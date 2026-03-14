@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taxi Fare Prediction</title>
+</head>
+
+<body>
+
+<h2>Taxi Fare Prediction</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<h3>Date Features</h3>
+
+Year
+<input type="number" name="year" min="2009" max="2015" required><br>
+
+Month
+<input type="number" name="month" min="1" max="12" required><br>
+
+Day
+<input type="number" name="day" min="1" max="31" required><br>
+
+Weekday
+<input type="number" name="weekday" min="0" max="6" required>
+<small>(0=Monday, 6=Sunday)</small><br>
+
+Hour
+<input type="number" name="hour" min="0" max="23" required><br>
+
+
+<h3>Passenger Info</h3>
+
+Passenger Count
+<input type="number" name="passenger_count" min="0" max="6" required><br>
+
+
+<h3>Trip Conditions</h3>
+
+Car Condition
+<select name="car_condition">
+<option value="Excellent">Excellent</option>
+<option value="Very Good">Very Good</option>
+<option value="Good">Good</option>
+<option value="Bad">Bad</option>
+</select>
+<br>
+
+Weather
+<select name="weather">
+<option value="Sunny">Sunny</option>
+<option value="Rainy">Rainy</option>
+<option value="Windy">Windy</option>
+<option value="Stormy">Stormy</option>
+<option value="Cloudy">Cloudy</option>
+</select>
+<br>
+
+Traffic Condition
+<select name="traffic_condition">
+<option value="Flow Traffic">Flow Traffic</option>
+<option value="Dense Traffic">Dense Traffic</option>
+<option value="Congested Traffic">Congested Traffic</option>
+</select>
+<br>
+
+
+<h3>Trip Geometry</h3>
+
+Pickup Longitude
+<input type="number" step="any" name="pickup_longitude" required><br>
+
+Pickup Latitude
+<input type="number" step="any" name="pickup_latitude" required><br>
+
+Dropoff Longitude
+<input type="number" step="any" name="dropoff_longitude" required><br>
+
+Dropoff Latitude
+<input type="number" step="any" name="dropoff_latitude" required><br>
+
+Distance
+<input type="number" step="any" name="distance" min="0" required><br>
+
+Bearing
+<input type="number" step="any" name="bearing" min="0" max="360" required><br>
+
+
+<h3>Airport Distances</h3>
+
+JFK Distance
+<input type="number" step="any" name="jfk_dist" min="0"><br>
+
+EWR Distance
+<input type="number" step="any" name="ewr_dist" min="0"><br>
+
+LGA Distance
+<input type="number" step="any" name="lga_dist" min="0"><br>
+
+SOL Distance
+<input type="number" step="any" name="sol_dist" min="0"><br>
+
+NYC Distance
+<input type="number" step="any" name="nyc_dist" min="0"><br>
+
+<br>
+
+<button type="submit">Predict Fare</button>
+
+</form>
+
+{% if prediction %}
+<h3>Estimated Fare: {{ prediction }}</h3>
+{% endif %}
+
+</body>
+</html>
